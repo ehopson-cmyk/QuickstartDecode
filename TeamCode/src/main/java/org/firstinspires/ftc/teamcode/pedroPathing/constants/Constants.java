@@ -47,6 +47,18 @@ public class Constants {
       .rightEncoderDirection(Encoder.REVERSE)
       .strafeEncoderDirection(Encoder.FORWARD);
 
+    public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
+            .rightFrontMotorName("frontRight")
+            .rightRearMotorName("backRight")
+            .leftRearMotorName("backLeft")
+            .leftFrontMotorName("frontLeft")
+            .leftFrontEncoderDirection(Encoder.FORWARD)
+            .leftRearEncoderDirection(Encoder.FORWARD)
+            .rightFrontEncoderDirection(Encoder.REVERSE)
+            .rightRearEncoderDirection(Encoder.REVERSE)
+            .robotWidth(10.5)
+            .robotLength(12.25) //may be bad; fix later
+
   public static PathConstraints pathConstraints = new PathConstraints(
     0.995,
     500,
@@ -57,6 +69,7 @@ public class Constants {
   public static Follower createFollower(HardwareMap hardwareMap) {
     return new FollowerBuilder(followerConstants, hardwareMap)
       .mecanumDrivetrain(driveConstants)
+      .driveEncoderLocalizer(localizerConstants)
       .threeWheelLocalizer(localizerConstants)
       .pathConstraints(pathConstraints)
       .build();
