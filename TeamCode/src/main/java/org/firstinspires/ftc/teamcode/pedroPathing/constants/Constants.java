@@ -32,20 +32,16 @@ public class Constants {
     .xVelocity(57.8741)
     .yVelocity(52.295);
 
-  public static ThreeWheelConstants localizerConstants =
-    new ThreeWheelConstants()
-      .forwardTicksToInches(.001989436789)
-      .strafeTicksToInches(.001989436789)
-      .turnTicksToInches(.001989436789)
-      .leftPodY(1)
-      .rightPodY(-1)
-      .strafePodX(-2.5)
-      .leftEncoder_HardwareMapName("frontLeft")
-      .rightEncoder_HardwareMapName("backRight")
-      .strafeEncoder_HardwareMapName("frontRight")
-      .leftEncoderDirection(Encoder.REVERSE)
-      .rightEncoderDirection(Encoder.REVERSE)
-      .strafeEncoderDirection(Encoder.FORWARD);
+public static TwoWheelConstants localizerConstants = new TwoWheelConstants()
+        .forwardEncoder_HardwareMapName("leftFront")
+        .strafeEncoder_HardwareMapName("rightRear")
+        .IMU_HardwareMapName("imu")
+        .IMU_Orientation(
+            new RevHubOrientationOnRobot(
+                RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                RevHubOrientationOnRobot.UsbFacingDirection.LEFT
+            )
+        );
 
     public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
             .rightFrontMotorName("frontRight")
@@ -69,8 +65,7 @@ public class Constants {
   public static Follower createFollower(HardwareMap hardwareMap) {
     return new FollowerBuilder(followerConstants, hardwareMap)
       .mecanumDrivetrain(driveConstants)
-      .driveEncoderLocalizer(localizerConstants)
-      .threeWheelLocalizer(localizerConstants)
+      .twoWheelLocalizer(localizerConstants)
       .pathConstraints(pathConstraints)
       .build();
   }
