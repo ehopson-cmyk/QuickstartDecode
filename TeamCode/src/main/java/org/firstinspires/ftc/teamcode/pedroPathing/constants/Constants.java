@@ -32,20 +32,14 @@ public class Constants {
     .xVelocity(57.8741)
     .yVelocity(52.295);
 
-  public static ThreeWheelConstants localizerConstants =
-    new ThreeWheelConstants()
-      .forwardTicksToInches(.001989436789)
-      .strafeTicksToInches(.001989436789)
-      .turnTicksToInches(.001989436789)
-      .leftPodY(1)
-      .rightPodY(-1)
-      .strafePodX(-2.5)
-      .leftEncoder_HardwareMapName("frontLeft")
-      .rightEncoder_HardwareMapName("backRight")
-      .strafeEncoder_HardwareMapName("frontRight")
-      .leftEncoderDirection(Encoder.REVERSE)
-      .rightEncoderDirection(Encoder.REVERSE)
-      .strafeEncoderDirection(Encoder.FORWARD);
+  public static PinpointConstants localizerConstants = new PinpointConstants()
+            .forwardPodY(-5)
+            .strafePodX(0.5)
+            .distanceUnit(DistanceUnit.INCH)
+            .hardwareMapName("pinpoint")
+            .encoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD)
+            .forwardEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD)
+            .strafeEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD);
 
     public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
             .rightFrontMotorName("frontRight")
@@ -69,8 +63,8 @@ public class Constants {
   public static Follower createFollower(HardwareMap hardwareMap) {
     return new FollowerBuilder(followerConstants, hardwareMap)
       .mecanumDrivetrain(driveConstants)
-      .driveEncoderLocalizer(localizerConstants)
-      .threeWheelLocalizer(localizerConstants)
+      //.driveEncoderLocalizer(localizerConstants)
+      .pinpointLocalizer(localizerConstants)
       .pathConstraints(pathConstraints)
       .build();
   }
