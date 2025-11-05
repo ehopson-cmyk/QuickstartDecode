@@ -41,7 +41,7 @@ public class Constants {
             .forwardEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD)
             .strafeEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD);
 
-    public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
+   /* public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
             .rightFrontMotorName("frontRight")
             .rightRearMotorName("backRight")
             .leftRearMotorName("backLeft")
@@ -51,7 +51,8 @@ public class Constants {
             .rightFrontEncoderDirection(Encoder.REVERSE)
             .rightRearEncoderDirection(Encoder.REVERSE)
             .robotWidth(10.5)
-            .robotLength(12.25) //may be bad; fix later
+            .robotLength(12.25) //may be bad; fix later 
+            */
 
   public static PathConstraints pathConstraints = new PathConstraints(
     0.995,
