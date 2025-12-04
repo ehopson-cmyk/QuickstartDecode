@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 public class Constants {
 
   public static FollowerConstants followerConstants = new FollowerConstants()
-    .mass(13)
+    .mass(9.706877)
     .forwardZeroPowerAcceleration(-41.278)
     .lateralZeroPowerAcceleration(-59.7819)
     .useSecondaryTranslationalPIDF(false)
@@ -47,7 +47,7 @@ public class Constants {
       .rightEncoderDirection(Encoder.REVERSE)
       .strafeEncoderDirection(Encoder.FORWARD);
 
-    public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
+    /*public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
             .rightFrontMotorName("frontRight")
             .rightRearMotorName("backRight")
             .leftRearMotorName("backLeft")
@@ -57,7 +57,7 @@ public class Constants {
             .rightFrontEncoderDirection(Encoder.REVERSE)
             .rightRearEncoderDirection(Encoder.REVERSE)
             .robotWidth(10.5)
-            .robotLength(12.25) //may be bad; fix later
+            .robotLength(12.25) //may be bad; fix later */
 
   public static PathConstraints pathConstraints = new PathConstraints(
     0.995,
@@ -69,7 +69,7 @@ public class Constants {
   public static Follower createFollower(HardwareMap hardwareMap) {
     return new FollowerBuilder(followerConstants, hardwareMap)
       .mecanumDrivetrain(driveConstants)
-      .driveEncoderLocalizer(localizerConstants)
+      //.driveEncoderLocalizer(localizerConstants)
       .threeWheelLocalizer(localizerConstants)
       .pathConstraints(pathConstraints)
       .build();
