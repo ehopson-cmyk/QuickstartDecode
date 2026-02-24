@@ -18,6 +18,7 @@ public class BasicPPAuto extends OpMode {
   public Follower follower; // Pedro Pathing follower instance
   private int pathState; // Current autonomous path state (state machine)
   private Paths paths; // Paths defined in the Paths class
+  private DcMotorEx intake; 
 
   @Override
   public void init() {
@@ -72,10 +73,30 @@ public class BasicPPAuto extends OpMode {
     }
   }
 
-  public int autonomousPathUpdate() {
+  public void autonomousPathUpdate() {
     // Add your state machine Here
     // Access paths with paths.pathName
     // Refer to the Pedro Pathing Docs (Auto Example) for an example state machine
+    switch (pathState) {
+        case 0:
+            follower.followPath(paths.Path1);
+            setPathState(1);
+            break;
+        case 1:
+            /* You could check for
+            - Follower State: "if(!follower.isBusy()) {}"
+            - Time: "if(pathTimer.getElapsedTimeSeconds() > 1) {}"
+            - Robot Position: "if(follower.getPose().getX() > 36) {}"
+            */
+            /* This case checks the robot's position and will wait until the robot position is close (1 inch away) from the scorePose's position */
+            if(!follower.isBusy()) {
+                intake.setPower(1);
+                sleep(1000);
+                intake.setPower(0);
+                follower.followPath(paths.Path2,true);
+                setPathState(2);
+            }
+            break;
     return 0;
   }
 }
